@@ -1,0 +1,29 @@
+/* ==========================================
+   MOBILE SPECIFIC STYLES
+   ========================================== */
+
+@media (max-width: 768px) {
+    .section-padding {
+        padding: var(--spacing-2xl) 0;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .car-card__image {
+        height: 200px;
+    }
+    
+    .hero-section {
+        min-height: 500px;
+    }
+    
+    .about-section .row {
+        flex-direction: column-reverse;
+    }
+    
+    .about-image {
+        margin-bottom: var(--spacing-lg);
+    }
+}

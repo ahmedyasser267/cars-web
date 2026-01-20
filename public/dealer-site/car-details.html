@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل السيارة - Friends Motors</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400;500;600&family=Tajawal:wght@400;500;700&family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../shared/css/variables.css">
+    <link rel="stylesheet" href="../../shared/css/global.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/mobile.css">
+    <link rel="stylesheet" href="assets/css/car-details.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/navbar-premium.css">
+    <link rel="stylesheet" href="assets/css/navbar-fix.css">
+    <link rel="stylesheet" href="assets/css/navbar-transparent-red.css">
+    <link rel="stylesheet" href="assets/css/navbar-visible.css">
+    <link rel="stylesheet" href="assets/css/colors-premium.css">
+    <link rel="stylesheet" href="assets/css/floating-whatsapp.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=100&h=100&fit=crop&auto=format" alt="Logo" class="logo">
+                    <span class="dealer-name">Friends Motors</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cars.html">السيارات</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#about">من نحن</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Car Details -->
+    <section class="car-details section-padding">
+        <div class="container">
+            <a href="cars.html" class="back-link">
+                <i class="fas fa-arrow-right"></i> العودة للسيارات
+            </a>
+            
+            <div id="carDetails">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Similar Cars -->
+    <section class="similar-cars section-padding">
+        <div class="container">
+            <h2 class="section-title">سيارات مشابهة</h2>
+            <div class="cars-grid" id="similarCars">
+                <!-- Will be loaded by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2025 Friends Motors. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/201012345678" class="floating-whatsapp" target="_blank" aria-label="واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Mobile CTA Bar -->
+    <div class="mobile-cta-bar" id="mobileCTA">
+        <a href="#" class="btn btn-whatsapp" id="whatsappBtn">
+            <i class="fab fa-whatsapp"></i> واتساب
+        </a>
+        <a href="#" class="btn btn-call" id="callBtn">
+            <i class="fas fa-phone"></i> اتصل
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../../shared/js/utils.js"></script>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/gallery.js"></script>
+    <script src="assets/js/car-details.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+    </script>
+</body>
+</html>

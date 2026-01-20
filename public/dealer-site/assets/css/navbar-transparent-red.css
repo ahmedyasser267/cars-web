@@ -1,0 +1,56 @@
+/* ==========================================
+   TRANSPARENT NAVBAR
+   ========================================== */
+
+/* Subtle dark glow effects */
+.site-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top, rgba(0, 0, 0, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Enhanced dark glow on scroll */
+.site-header.scrolled::before {
+    background: radial-gradient(circle at top, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
+}
+
+/* Dark tint for navbar elements */
+.navbar {
+    position: relative;
+}
+
+/* Subtle red glow around active nav items */
+.nav-link.active {
+    box-shadow: 0 0 15px rgba(220, 20, 60, 0.4), inset 0 0 10px rgba(220, 20, 60, 0.2);
+}
+
+/* Red glow on hover */
+.nav-link:hover {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 15px rgba(220, 20, 60, 0.6) !important;
+}
+
+/* Logo with red accent */
+.navbar-brand .logo {
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.navbar-brand:hover .logo {
+    box-shadow: 0 8px 25px rgba(220, 20, 60, 0.5), inset 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile menu dark background */
+@media (max-width: 768px) {
+    .navbar-collapse {
+        background: rgba(0, 0, 0, 0.95) !important;
+    }
+    
+    .navbar-collapse.show {
+        background: rgba(0, 0, 0, 0.98) !important;
+    }
+}

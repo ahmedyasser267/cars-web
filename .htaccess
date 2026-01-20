@@ -1,0 +1,30 @@
+# Car Dealership SaaS Platform - Apache Configuration
+
+RewriteEngine On
+RewriteBase /
+
+# API routes
+RewriteRule ^backend/api/v1/(.*)$ backend/routes/api.php [L,QSA]
+
+# Public dealer sites (subdomain routing)
+# Note: This requires proper DNS and virtual host configuration
+# For local development, access via: localhost/dealer-site/
+
+# Admin routes
+RewriteRule ^admin/(.*)$ public/admin/$1 [L]
+
+# Default route
+RewriteRule ^$ public/dealer-site/index.html [L]
+
+# Security: Deny access to sensitive files
+<FilesMatch "\.(sql|log|env)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Enable CORS for API (adjust as needed)
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>

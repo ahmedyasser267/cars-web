@@ -1,0 +1,118 @@
+/* ==========================================
+   FLOATING WHATSAPP BUTTON
+   ========================================== */
+
+.floating-whatsapp {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #25D366 0%, #1DA851 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+    z-index: 9998;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+    animation: pulse-whatsapp 2s ease-in-out infinite;
+}
+
+.floating-whatsapp:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 35px rgba(37, 211, 102, 0.7);
+}
+
+.floating-whatsapp:active {
+    transform: scale(0.95);
+}
+
+.floating-whatsapp i {
+    font-size: 36px;
+    color: #FFFFFF;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Pulse Animation */
+@keyframes pulse-whatsapp {
+    0%, 100% {
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+    }
+    50% {
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.8), 0 0 0 10px rgba(37, 211, 102, 0.2);
+    }
+}
+
+/* Ripple Effect */
+.floating-whatsapp::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.floating-whatsapp:hover::before {
+    width: 100px;
+    height: 100px;
+}
+
+/* Tooltip */
+.floating-whatsapp::after {
+    content: 'واتساب';
+    position: absolute;
+    right: 85px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: #FFFFFF;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.floating-whatsapp:hover::after {
+    opacity: 1;
+    visibility: visible;
+    right: 90px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .floating-whatsapp {
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+        left: 20px;
+    }
+    
+    .floating-whatsapp i {
+        font-size: 30px;
+    }
+    
+    .floating-whatsapp::after {
+        display: none;
+    }
+}
+
+/* Hide on mobile if mobile CTA bar is visible */
+@media (max-width: 768px) {
+    .mobile-cta-bar:not(:empty) ~ .floating-whatsapp {
+        display: none;
+    }
+}

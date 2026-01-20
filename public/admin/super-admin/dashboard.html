@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - Super Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400;500;600&family=Tajawal:wght@400;500;700&family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../shared/css/variables.css">
+    <link rel="stylesheet" href="../../../shared/css/global.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+    <aside class="admin-sidebar">
+        <div class="sidebar-logo"><i class="fas fa-car"></i><h3>DealerPro</h3></div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item active"><i class="fas fa-home"></i><span>لوحة التحكم</span></a>
+            <a href="dealers.html" class="nav-item"><i class="fas fa-building"></i><span>التجار</span></a>
+            <a href="create-dealer.html" class="nav-item"><i class="fas fa-plus"></i><span>إضافة تاجر</span></a>
+        </nav>
+        <div class="sidebar-footer"><button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button></div>
+    </aside>
+
+    <main class="admin-main">
+        <div class="admin-header">
+            <h1>لوحة التحكم - Super Admin</h1>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card__icon"><i class="fas fa-building"></i></div>
+                <div class="stat-card__value" id="totalDealers">0</div>
+                <div class="stat-card__label">إجمالي التجار</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__icon"><i class="fas fa-check-circle"></i></div>
+                <div class="stat-card__value" id="activeSubs">0</div>
+                <div class="stat-card__label">الاشتراكات النشطة</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__icon"><i class="fas fa-money-bill"></i></div>
+                <div class="stat-card__value" id="monthlyRevenue">0</div>
+                <div class="stat-card__label">الإيرادات الشهرية (EGP)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__icon"><i class="fas fa-car"></i></div>
+                <div class="stat-card__value" id="totalCars">0</div>
+                <div class="stat-card__label">إجمالي السيارات</div>
+            </div>
+        </div>
+
+        <div class="data-table">
+            <div style="padding: var(--spacing-lg); border-bottom: 1px solid #e5e5e5;">
+                <h3 style="margin: 0;">النشاط الأخير</h3>
+            </div>
+            <div style="padding: var(--spacing-lg);" id="recentActivity">
+                <p class="text-center">جاري التحميل...</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../../shared/js/utils.js"></script>
+    <script src="../../../shared/js/api.js"></script>
+    <script src="../assets/js/admin.js"></script>
+    <script>
+        async function loadDashboard() {
+            try {
+                const data = await API.getDealers({ limit: 1000 });
+                if (data.success && data.data) {
+                    const dealers = data.data;
+                    const active = dealers.filter(d => d.subscription_status === 'active');
+                    
+                    document.getElementById('totalDealers').textContent = dealers.length;
+                    document.getElementById('activeSubs').textContent = active.length;
+                    
+                    // Calculate revenue (simplified)
+                    const revenue = active.reduce((sum, d) => {
+                        return sum + (d.subscription_plan === 'pro' ? 500 : 300);
+                    }, 0);
+                    document.getElementById('monthlyRevenue').textContent = formatNumber(revenue);
+                    
+                    // Get total cars
+                    const totalCars = dealers.reduce((sum, d) => sum + (parseInt(d.cars_count) || 0), 0);
+                    document.getElementById('totalCars').textContent = formatNumber(totalCars);
+                    
+                    // Recent activity
+                    const activity = dealers.slice(0, 5).map(d => {
+                        const status = d.subscription_status === 'active' ? '✅' : d.subscription_status === 'suspended' ? '⚠️' : '❌';
+                        return `<p>${status} ${d.name} - ${d.subscription_plan}</p>`;
+                    }).join('');
+                    document.getElementById('recentActivity').innerHTML = activity || '<p class="text-center">لا يوجد نشاط</p>';
+                }
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', loadDashboard);
+    </script>
+</body>
+</html>

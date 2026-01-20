@@ -1,0 +1,119 @@
+/* ==========================================
+   SCROLL ANIMATIONS
+   ========================================== */
+
+/* Fade In on Scroll */
+@keyframes fadeInScroll {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-scroll {
+    opacity: 0;
+    animation: fadeInScroll 0.8s ease forwards;
+}
+
+/* Slide In from Right */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slide-in-right {
+    opacity: 0;
+    animation: slideInRight 0.8s ease forwards;
+}
+
+/* Scale In */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.scale-in {
+    opacity: 0;
+    animation: scaleIn 0.8s ease forwards;
+}
+
+/* Stagger Animation for Grid Items */
+.cars-grid .car-card:nth-child(1) { animation-delay: 0.1s; }
+.cars-grid .car-card:nth-child(2) { animation-delay: 0.2s; }
+.cars-grid .car-card:nth-child(3) { animation-delay: 0.3s; }
+.cars-grid .car-card:nth-child(4) { animation-delay: 0.4s; }
+.cars-grid .car-card:nth-child(5) { animation-delay: 0.5s; }
+.cars-grid .car-card:nth-child(6) { animation-delay: 0.6s; }
+.cars-grid .car-card:nth-child(7) { animation-delay: 0.7s; }
+.cars-grid .car-card:nth-child(8) { animation-delay: 0.8s; }
+.cars-grid .car-card:nth-child(9) { animation-delay: 0.9s; }
+.cars-grid .car-card:nth-child(10) { animation-delay: 1s; }
+.cars-grid .car-card:nth-child(11) { animation-delay: 1.1s; }
+.cars-grid .car-card:nth-child(12) { animation-delay: 1.2s; }
+.cars-grid .car-card:nth-child(13) { animation-delay: 1.3s; }
+.cars-grid .car-card:nth-child(14) { animation-delay: 1.4s; }
+.cars-grid .car-card:nth-child(15) { animation-delay: 1.5s; }
+
+/* Intersection Observer Animation */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Parallax Effect for Hero */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-background {
+    will-change: transform;
+}
+
+/* Loading Animation */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.loading-shimmer {
+    background: linear-gradient(
+        90deg,
+        #f0f0f0 0px,
+        #e0e0e0 40px,
+        #f0f0f0 80px
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
