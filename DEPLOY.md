@@ -16,7 +16,7 @@ https://github.com/ahmedyasser267/cars-web
 3. من القائمة الجانبية، اضغط على **Pages**
 4. في قسم **Source**:
    - اختر **Branch: main**
-   - اختر **Folder: /public/dealer-site**
+   - اختر **Folder: / (root)**
 5. اضغط **Save**
 
 #### الطريقة الثانية: استخدام GitHub Actions (موصى بها)
@@ -37,7 +37,7 @@ https://ahmedyasser267.github.io/cars-web/
 ⚠️ **تأكد من:**
 - جميع المسارات النسبية صحيحة
 - الصور تعمل (روابط Unsplash)
-- الفيديو HERO.mp4 قد لا يعمل على GitHub Pages (استخدم صورة بديلة)
+- الفيديو HERO.mp4 موجود في `assets/videos/`
 
 ## تحديث الموقع:
 ```bash
