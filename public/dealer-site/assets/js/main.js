@@ -37,7 +37,26 @@ function loadDealerInfo() {
         });
     }
     
-    // Video will be handled by HTML, no need to update
+    // Video error handling
+    const heroVideo = document.getElementById('heroVideo');
+    const heroFallback = document.querySelector('.hero-fallback');
+    
+    if (heroVideo) {
+        heroVideo.addEventListener('error', () => {
+            console.log('Video failed to load, showing fallback image');
+            if (heroFallback) {
+                heroFallback.style.display = 'block';
+            }
+        });
+        
+        // Ensure video plays
+        heroVideo.play().catch(error => {
+            console.log('Video autoplay prevented:', error);
+            if (heroFallback) {
+                heroFallback.style.display = 'block';
+            }
+        });
+    }
     
     // Update about image
     if (dealer.aboutImage) {
@@ -173,13 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadDealerInfo();
     loadFeaturedCars();
     
-    // Update hero image
-    if (dealer.heroImage) {
-        const heroImg = document.getElementById('heroImage');
-        if (heroImg) {
-            heroImg.src = dealer.heroImage;
-        }
-    }
     
     // Mobile menu toggle with animation
     function toggleMobileMenu() {
